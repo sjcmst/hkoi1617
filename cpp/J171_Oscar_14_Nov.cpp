@@ -26,25 +26,26 @@ int main()
 
     //Prcoess
     for(int i=0;i<N;i++){
+
+        //If character is behind a space, marked for checking
         bool needCheck=true;
         int acr_i=0;
+
         for(int j=0;j<strlen(guess[i]);j++){
             if(needCheck){
-                if(guess[i][j]>=97&&guess[i][j]<=122){
-                    guess[i][j]-=32;
-                }
+                toupper(guess[i][j]);
+
                 if(guess[i][j]==acr[acr_i]){
                     acr_i++;
                 }else{
-                    guess[i][j]+=32;
+                    tolower(guess[i][j]);
                 }
+
                 needCheck=false;
             }else{
-                if(guess[i][j]>=65&&guess[i][j]<=97){
-                    guess[i][j]+=32;
-                }
+                tolower(guess[i][j]);
             }
-            if(guess[i][j]==32){
+            if(guess[i][j]==' '){
                 needCheck=true;
             }
         }
