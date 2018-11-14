@@ -9,7 +9,7 @@ int main()
     char acr[100];
     int N;
     char guess[100][5000];
-
+    bool isValidAcr = true;
     cin >> acr;
     cin >> N;
     
@@ -24,13 +24,19 @@ int main()
     // cout << endl;
     // cout << "Results:" << endl;
 
+    //Acronym Input Check
+    for(int k=0;k<strlen(acr);k++){
+        if(!isalpha(acr[k])){
+            isValidAcr = false;
+        }
+    }
+
     //Prcoess
     for(int i=0;i<N;i++){
 
         //If character is behind a space, marked for checking
         bool needCheck=true;
         int acr_i=0;
-
         for(int j=0;j<strlen(guess[i]);j++){
             if(needCheck){
                 toupper(guess[i][j]);
@@ -51,7 +57,7 @@ int main()
         }
 
         //Output
-        if(acr_i==strlen(acr)){
+        if(acr_i==strlen(acr) && isValidAcr){
             cout << guess[i] << endl;
         }else{
             cout << "No :(" << endl;
