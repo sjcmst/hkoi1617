@@ -9,7 +9,7 @@ int main()
     char acr[100];
     int N;
     char guess[100][5000];
-    bool isValidAcr = true;
+    // bool isValidAcr = true;
     cin >> acr;
     cin >> N;
     
@@ -25,11 +25,11 @@ int main()
     // cout << "Results:" << endl;
 
     //Acronym Input Check
-    for(int k=0;k<strlen(acr);k++){
-        if(!isalpha(acr[k])){
-            isValidAcr = false;
-        }
-    }
+    // for(int k=0;k<strlen(acr);k++){
+    //     if(!isalpha(acr[k])){
+    //         isValidAcr = false;
+    //     }
+    // }
 
     //Prcoess
     for(int i=0;i<N;i++){
@@ -39,17 +39,17 @@ int main()
         int acr_i=0;
         for(int j=0;j<strlen(guess[i]);j++){
             if(needCheck){
-                toupper(guess[i][j]);
+                guess[i][j] = toupper(guess[i][j]);
 
                 if(guess[i][j]==acr[acr_i]){
                     acr_i++;
                 }else{
-                    tolower(guess[i][j]);
+                    guess[i][j] = tolower(guess[i][j]);
                 }
 
                 needCheck=false;
             }else{
-                tolower(guess[i][j]);
+                guess[i][j] = tolower(guess[i][j]);
             }
             if(guess[i][j]==' '){
                 needCheck=true;
@@ -57,9 +57,10 @@ int main()
         }
 
         //Output
-        if(acr_i==strlen(acr) && isValidAcr){
+        if(acr_i==strlen(acr)){
             cout << guess[i] << endl;
         }else{
+            // cout << guess[i] <<endl;
             cout << "No :(" << endl;
         }
     }
