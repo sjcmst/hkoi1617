@@ -8,8 +8,8 @@ OBJS   := $(patsubst %.cpp,%.out,$(SRCS))
 
 all: $(OBJS)
 
-$(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -o $@ $(SRCS)
+%.out: %.cpp
+	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
 	rm -f *.out *.o
